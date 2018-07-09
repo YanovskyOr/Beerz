@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "526295677482",
+    "firebase_url": "https://beerz-a834d.firebaseio.com",
+    "project_id": "beerz-a834d",
+    "storage_bucket": "beerz-a834d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526295677482:android:a3ee8a8671a5457b",
+        "android_client_info": {
+          "package_name": "ory.ofir.beerz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526295677482-kat9a28d6pdbuq1ih5vrantl5p2n0goj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxBKkjHOmXjpNM_JdUTZPLDUTHM-G7aT4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

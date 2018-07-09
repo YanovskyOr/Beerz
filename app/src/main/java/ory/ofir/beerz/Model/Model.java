@@ -25,8 +25,8 @@ public class Model {
         modelFirebase = new ModelFirebase();
     }
 
-    public void cancellGetAllBeers() {
-        modelFirebase.cancellGetAllBeers();
+    public void cancelGetAllBeers() {
+        modelFirebase.cancelGetAllBeers();
     }
 
     class BeerListData extends  MutableLiveData<List<Beer>>{
@@ -69,7 +69,7 @@ public class Model {
         @Override
         protected void onInactive() {
             super.onInactive();
-            modelFirebase.cancellGetAllBeers();
+            modelFirebase.cancelGetAllBeers();
             Log.d("TAG","cancellGetAllBeers");
         }
 

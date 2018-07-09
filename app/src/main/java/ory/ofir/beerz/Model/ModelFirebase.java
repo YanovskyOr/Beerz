@@ -28,7 +28,7 @@ public class ModelFirebase {
         mDatabase.child("beers").child(beer.id).setValue(beer);
     }
 
-    public void cancellGetAllBeers() {
+    public void cancelGetAllBeers() {
         DatabaseReference stRef = FirebaseDatabase.getInstance().getReference().child("beers");
         stRef.removeEventListener(eventListener);
     }
@@ -41,9 +41,9 @@ public class ModelFirebase {
     ValueEventListener eventListener;
 
     public void getAllBeers(final GetAllBeersListener listener) {
-        DatabaseReference stRef = FirebaseDatabase.getInstance().getReference().child("beers");
+        DatabaseReference brRef = FirebaseDatabase.getInstance().getReference().child("beers");
 
-        eventListener = stRef.addValueEventListener(new ValueEventListener() {
+        eventListener = brRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Beer> brList = new LinkedList<>();
