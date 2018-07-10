@@ -205,6 +205,10 @@ public class BeersListFragment extends Fragment {
             TextView nameTv = view.findViewById(R.id.br_name_tv);
             TextView ratingTv = view.findViewById(R.id.br_rating_tv);
 
+            TextView descTv = view.findViewById(R.id.br_desc_tv);
+            ImageView imageView = view.findViewById(R.id.br_picture_tv);
+
+
             nameTv.setText(br.name);
             ratingTv.setText(Float.toString(br.rating));
             return view;
