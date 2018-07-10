@@ -26,16 +26,44 @@ import ory.ofir.beerz.Model.Beer;
 import ory.ofir.beerz.Model.Model;
 
 public class BeersListFragment extends Fragment {
+
     ListView list;
-    MyAdapter myAdapter = new MyAdapter();;
+    MyAdapter myAdapter = new MyAdapter();
     BeersListViewModel dataModel;
+    //List<Beer> data = new LinkedList<Beer>();
+
 
     public static BeersListFragment newInstance() {
         BeersListFragment fragment = new BeersListFragment();
         return fragment;
     }
 
+    //BEGIN TEST
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        myAdapter = new MyAdapter();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_beers_list, container, false);
+        list = view.findViewById(R.id.beerslist_list);
+        list.setAdapter(myAdapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("TAG","item selected:" + i);
+            }
+        });
+        return view;
+    }
+    //END TEST
+
+
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
         dataModel = ViewModelProviders.of(this).get(BeersListViewModel.class);
@@ -68,7 +96,7 @@ public class BeersListFragment extends Fragment {
             }
         });
         return view;
-    }
+    }*/
 
 
 
@@ -79,8 +107,10 @@ public class BeersListFragment extends Fragment {
     }
 
 
+    /*
     class MyAdapter extends BaseAdapter {
         public MyAdapter(){
+
         }
 
         @Override
@@ -131,6 +161,52 @@ public class BeersListFragment extends Fragment {
                     }
                 });
             }
+            return view;
+        }
+    }*/
+    class MyAdapter extends BaseAdapter {
+        List<Beer> data = new LinkedList<Beer>();
+
+        public MyAdapter(){
+            for(int i=0; i <10;i++){
+                Beer s = new Beer();
+                s.name = "item " + i;
+                s.id = "" + i;
+                s.rating = 5;
+                s.description="bla";
+                s.picture="asd";
+                data.add(s);
+            }
+        }
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+
+            if (view == null){
+                view = LayoutInflater.from(getActivity()).inflate(R.layout.beer_list_item,null);
+            }
+
+            final Beer br = data.get(i);
+
+            TextView nameTv = view.findViewById(R.id.br_name_tv);
+            TextView ratingTv = view.findViewById(R.id.br_rating_tv);
+
+            nameTv.setText(br.name);
+            ratingTv.setText(Float.toString(br.rating));
             return view;
         }
     }
