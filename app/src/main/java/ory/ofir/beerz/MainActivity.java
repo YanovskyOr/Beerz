@@ -1,10 +1,8 @@
 package ory.ofir.beerz;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,19 +12,25 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-//import ory.ofir.beerz.BeersListFragment;
+import ory.ofir.beerz.View.BeersListFragment;
+import ory.ofir.beerz.View.LoginFragment;
+
+
+//import ory.ofir.beerz.View.BeersListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     final int REQUEST_WRITE_STORAGE = 1;
-
-
+    private FirebaseAuth mAuth;
     Context contextCompat;
 
 
@@ -77,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //contextCompat = getBaseContext();
+        mAuth = FirebaseAuth.getInstance();
+
+        contextCompat = getBaseContext();
 /*
         if (savedInstanceState == null) {
             BeersListFragment fragment = new BeersListFragment();
@@ -93,6 +100,24 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         */
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //BEGIN TESTING
+        FirebaseAuth.getInstance().signOut();
+        //FINISH TESTING
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Log.d("tag", "currentUser is :" +currentUser);
+        if(currentUser == null) {
+            LoginFragment fragment = new LoginFragment();
+            FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
+            tran.replace(R.id.main_container, fragment);
+            tran.commit();
+        }
     }
 
     @Override
