@@ -23,8 +23,11 @@ import java.util.List;
 
 
 public class ModelFirebase {
+
     public void addBeer(Beer beer){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        String key = mDatabase.push().getKey();
+        beer.id = key;
         mDatabase.child("beers").child(beer.id).setValue(beer);
     }
 

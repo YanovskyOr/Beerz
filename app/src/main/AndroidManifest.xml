@@ -23,7 +23,8 @@
             <meta-data android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-        <activity android:name=".AddBeerActivity">
+        <activity android:name=".AddBeerActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <!--<action android:name="android.intent.action.MAIN" />-->
 

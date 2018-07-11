@@ -13,12 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.app.ActionBar;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.graphics.Bitmap;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import ory.ofir.beerz.Model.Beer;
@@ -41,7 +43,8 @@ public class AddBeerFragment extends Fragment {
     ImageView beerPicIv;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ProgressBar progress;
-    Bitmap imageBitmap;
+    RatingBar ratingBar;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,29 +63,35 @@ public class AddBeerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_beer, container, false);
 
         beerNameTe = view.findViewById(R.id.add_beer_name_te);
+        beerNameTe.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         beerReviewTe = view.findViewById(R.id.add_beer_review_te);
+        ratingBar = (RatingBar) view.findViewById(R.id.add_beer_rating);
+        progress = view.findViewById(R.id.progressBar);
+        progress.setVisibility(View.GONE);
 
         Button save = view.findViewById(R.id.add_beer_add_btn);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                progress . setVisibility(View.VISIBLE);
+                progress.setVisibility(View.VISIBLE);
 
                 final Beer beer = new Beer();
                 beer.name = beerNameTe.getText().toString();
-                beer.id = "";
+                beer.id = "2";
                 beer.description = beerReviewTe.getText().toString();
-                beer.rating = 5;
+                beer.rating = ratingBar.getRating();
 
                 //save image
                 if (imageBitmap != null) {
                     Model.instance.saveImage(imageBitmap, new Model.SaveImageListener() {
                         @Override
                         public void onDone(String url) {
-                            //save student obj
+                            //save beer object
                             beer.picture = url;
-//                            Model.instance.addBeer(beer);
-                            getActivity().getSupportFragmentManager().popBackStack();
+                            Model.instance.addBeer(beer);
+                            getActivity().finish();
                         }
                     });
                 }
@@ -120,12 +129,12 @@ public class AddBeerFragment extends Fragment {
                 }
             }
         });
-
+        beerPicIv = view.findViewById(R.id.add_beer_pic_iv);
         return view;
 
     }
 
-
+    Bitmap imageBitmap;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

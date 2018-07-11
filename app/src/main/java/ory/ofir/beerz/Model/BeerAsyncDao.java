@@ -13,8 +13,8 @@ public class BeerAsyncDao {
         class MyAsyncTask extends AsyncTask<String,String,List<Beer>>{
             @Override
             protected List<Beer> doInBackground(String... strings) {
-                List<Beer> stList = AppLocalDb.db.beerDao().getAll();
-                return stList;
+                List<Beer> brList = AppLocalDb.db.beerDao().getAll();
+                return brList;
             }
 
             @Override

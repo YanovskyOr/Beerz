@@ -70,7 +70,7 @@ public class Model {
         protected void onInactive() {
             super.onInactive();
             modelFirebase.cancelGetAllBeers();
-            Log.d("TAG","cancellGetAllBeers");
+            Log.d("TAG","cancelGetAllBeers");
         }
 
         public BeerListData() {
