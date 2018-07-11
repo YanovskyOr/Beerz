@@ -66,7 +66,7 @@ public class AddBeerFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progress . setVisibility(View.VISIBLE);
+//                progress . setVisibility(View.VISIBLE);
 
                 final Beer beer = new Beer();
                 beer.name = beerNameTe.getText().toString();
