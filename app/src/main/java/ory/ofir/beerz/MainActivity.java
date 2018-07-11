@@ -2,17 +2,20 @@ package ory.ofir.beerz;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     final int REQUEST_WRITE_STORAGE = 1;
+
+
     Context contextCompat;
 
 
@@ -35,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setText("My Beers");
                     onHomeSelected();
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText("Top Rated Beers");
+                case R.id.navigation_all_beers:
+                    mTextMessage.setText("All Beers");
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_top_beers:
+                    mTextMessage.setText("Top Beers");
                     return true;
             }
             return false;
@@ -50,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         BeersListFragment fragment = new BeersListFragment();
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
         tran.replace(R.id.main_container, fragment);
-        tran.addToBackStack("");
         tran.commit();
     }
 
@@ -64,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         onHomeSelected();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(view.getContext(),AddBeerActivity.class));
+            }
+        });
         //contextCompat = getBaseContext();
 /*
         if (savedInstanceState == null) {
@@ -101,5 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 }

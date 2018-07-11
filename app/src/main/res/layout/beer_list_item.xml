@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginTop="8dp">
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    android:background="@color/colorBg">
 
     <!--<ImageView-->
     <!--android:id="@+id/br_picture_tv"-->
@@ -52,10 +53,11 @@
         android:id="@+id/br_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textSize="16sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,10 +66,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis velit laoreet, lobortis ipsum et, convallis risus.Suspendisse ac vulputate felis, ac semper lacus. Ut elit felis, vestibulum ut dolor quis, dictum sodales elit."
         android:textSize="16sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/br_picture_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/br_name_tv" />
@@ -76,22 +79,22 @@
         android:id="@+id/br_picture_tv"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_launcher_background"
         android:contentDescription="pic"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/br_name_tv"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/br_name_tv" />
 
     <TextView
         android:id="@+id/br_rating_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Rating"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/br_desc_tv" />

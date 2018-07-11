@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
-</selector>
+    <item>
+        <shape android:shape="rectangle" android:padding="10dp">
+            <solid android:color="@color/colorPrimary" />
+            <corners
+                android:topLeftRadius="90dp"
+                android:topRightRadius="90dp"
+                android:bottomLeftRadius="90dp"
+
+                />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_add"
+        android:bottom="16dp"
+        android:left="16dp"
+        android:right="16dp"
+        android:top="16dp"/>
+</layer-list>
+
+
+
+
