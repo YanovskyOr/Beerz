@@ -18,12 +18,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import ory.ofir.beerz.MainActivity;
 import ory.ofir.beerz.R;
 
 public class LoginFragment extends Fragment {
     private EditText mEmailField;
     private EditText mPasswowrdField;
     private Button mLoginBtn;
+    private Button mRegisterBrn;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -50,6 +53,7 @@ public class LoginFragment extends Fragment {
         mEmailField = view.findViewById(R.id.emailField);
         mPasswowrdField= view.findViewById(R.id.passwordField);
         mLoginBtn = view.findViewById(R.id.loginButton);
+        mRegisterBrn = view.findViewById(R.id.registerButton);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -67,8 +71,17 @@ public class LoginFragment extends Fragment {
                 startSignIn();
             }
         });
+
+        mRegisterBrn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("tag", "log in");
+                startRegister();
+            }
+        });
         return view;
     }
+
 
     private void startSignIn() {
         String email = mEmailField.getText().toString();
@@ -87,6 +100,34 @@ public class LoginFragment extends Fragment {
                     }
                     else {
                         Log.d("tag", "login success");
+
+                        BeersListFragment fragment = new BeersListFragment();
+                        FragmentTransaction tran = getActivity().getSupportFragmentManager().beginTransaction();
+                        tran.replace(R.id.main_container, fragment);
+                        tran.commit();
+                    }
+                }
+            });
+        }
+    }
+
+    private void startRegister() {
+        String email = mEmailField.getText().toString();
+        String password = mPasswowrdField.getText().toString();
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            Log.d("tag", "fields are empty");
+        }
+        else
+        {
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (!task.isSuccessful()) {
+//                        Toast.makeText(MainActivity.this,"Sign in failed",Toast.LENGTH_LONG).show();
+                        Log.d("tag", "register failed");
+                    }
+                    else {
+                        Log.d("tag", "register success");
 
                         BeersListFragment fragment = new BeersListFragment();
                         FragmentTransaction tran = getActivity().getSupportFragmentManager().beginTransaction();
