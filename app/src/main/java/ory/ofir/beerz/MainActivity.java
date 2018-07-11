@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ory.ofir.beerz.Model.Beer;
+import ory.ofir.beerz.Model.Model;
 import ory.ofir.beerz.View.BeersListFragment;
 import ory.ofir.beerz.View.LoginFragment;
 
@@ -89,10 +91,23 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         Log.d("tag", "currentUser is :" +currentUser);
         if(currentUser == null) {
-            startActivity(new Intent(this,LoginActivity.class));
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+            startActivity(intent);
+            this.finish();
         }
+
+/*        Beer br = new Beer();
+        br.name="bla";
+        br.picture="";
+        br.id="2";
+        br.description="very nice";
+        br.rating=4;
+
+        Model.instance.addBeer(br);/*
 
 /*
         if (savedInstanceState == null) {
