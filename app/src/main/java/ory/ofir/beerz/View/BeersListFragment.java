@@ -1,11 +1,6 @@
-package ory.ofir.beerz;
+package ory.ofir.beerz.View;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,8 +17,9 @@ import java.util.LinkedList;
 
 import java.util.List;
 
+import ory.ofir.beerz.BeersListViewModel;
 import ory.ofir.beerz.Model.Beer;
-import ory.ofir.beerz.Model.Model;
+import ory.ofir.beerz.R;
 
 public class BeersListFragment extends Fragment {
 
