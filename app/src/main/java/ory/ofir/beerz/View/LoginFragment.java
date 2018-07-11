@@ -1,5 +1,6 @@
 package ory.ofir.beerz.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -100,11 +101,12 @@ public class LoginFragment extends Fragment {
                     }
                     else {
                         Log.d("tag", "login success");
+                        startActivity(new Intent(getActivity(),MainActivity.class));
 
-                        BeersListFragment fragment = new BeersListFragment();
+                        /*BeersListFragment fragment = new BeersListFragment();
                         FragmentTransaction tran = getActivity().getSupportFragmentManager().beginTransaction();
                         tran.replace(R.id.main_container, fragment);
-                        tran.commit();
+                        tran.commit();*/
                     }
                 }
             });
@@ -128,6 +130,7 @@ public class LoginFragment extends Fragment {
                     }
                     else {
                         Log.d("tag", "register success");
+
 
                         BeersListFragment fragment = new BeersListFragment();
                         FragmentTransaction tran = getActivity().getSupportFragmentManager().beginTransaction();

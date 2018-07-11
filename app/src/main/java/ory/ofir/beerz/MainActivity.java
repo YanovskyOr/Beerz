@@ -80,10 +80,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(),AddBeerActivity.class));
             }
         });
-        //contextCompat = getBaseContext();
-        mAuth = FirebaseAuth.getInstance();
 
         contextCompat = getBaseContext();
+
+        //BEGIN LOGIN/REGISTER TESTING
+        //FirebaseAuth.getInstance().signOut();
+        //END TESTING
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Log.d("tag", "currentUser is :" +currentUser);
+        if(currentUser == null) {
+            startActivity(new Intent(this,LoginActivity.class));
+        }
+
 /*
         if (savedInstanceState == null) {
             BeersListFragment fragment = new BeersListFragment();
@@ -102,23 +112,8 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        //BEGIN TESTING
-        FirebaseAuth.getInstance().signOut();
-        //FINISH TESTING
 
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        Log.d("tag", "currentUser is :" +currentUser);
-        if(currentUser == null) {
-            LoginFragment fragment = new LoginFragment();
-            FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
-            tran.replace(R.id.main_container, fragment);
-            tran.commit();
-        }
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

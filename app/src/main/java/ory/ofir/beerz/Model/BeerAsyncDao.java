@@ -10,7 +10,7 @@ public class BeerAsyncDao {
         void onComplete(T data);
     }
     static public void getAll(final BeerAsyncDaoListener<List<Beer>> listener) {
-        class MyAsynchTask extends AsyncTask<String,String,List<Beer>>{
+        class MyAsyncTask extends AsyncTask<String,String,List<Beer>>{
             @Override
             protected List<Beer> doInBackground(String... strings) {
                 List<Beer> stList = AppLocalDb.db.beerDao().getAll();
@@ -23,13 +23,13 @@ public class BeerAsyncDao {
                 listener.onComplete(beers);
             }
         }
-        MyAsynchTask task = new MyAsynchTask();
+        MyAsyncTask task = new MyAsyncTask();
         task.execute();
     }
 
 
     static void insertAll(final List<Beer> beers, final BeerAsyncDaoListener<Boolean> listener){
-        class MyAsynchTask extends AsyncTask<List<Beer>,String,Boolean>{
+        class MyAsyncTask extends AsyncTask<List<Beer>,String,Boolean>{
             @Override
             protected Boolean doInBackground(List<Beer>... beers) {
                 for (Beer br:beers[0]) {
@@ -44,7 +44,7 @@ public class BeerAsyncDao {
                 listener.onComplete(success);
             }
         }
-        MyAsynchTask task = new MyAsynchTask();
+        MyAsyncTask task = new MyAsyncTask();
         task.execute(beers);
     }
 }
