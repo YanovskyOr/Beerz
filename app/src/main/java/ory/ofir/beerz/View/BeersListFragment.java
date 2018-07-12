@@ -8,6 +8,7 @@ import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.util.Log;
@@ -60,7 +61,19 @@ public class BeersListFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("TAG","item selected:" + i);
+                Log.d("TAG","item selected:" + dataModel.getData().getValue().get(i).name);
+                Beer br = dataModel.getData().getValue().get(i);
+
+                BeerDetailsFragment fragment = new BeerDetailsFragment();
+                fragment.id = br.id;
+                fragment.name = br.name;
+                fragment.desc = br.description;
+                fragment.rating = br.rating;
+                fragment.image = br.picture;
+                FragmentTransaction tran = getFragmentManager().beginTransaction();
+                tran.replace(R.id.main_container, fragment);
+                tran.addToBackStack("");
+                tran.commit();
             }
         });
         return view;
