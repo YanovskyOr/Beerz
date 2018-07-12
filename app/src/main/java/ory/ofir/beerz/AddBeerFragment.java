@@ -2,6 +2,7 @@ package ory.ofir.beerz;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -144,6 +145,8 @@ public class AddBeerFragment extends Fragment {
                 resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
+            int dimension = Math.min(imageBitmap.getWidth(), imageBitmap.getHeight());
+            imageBitmap = ThumbnailUtils.extractThumbnail(imageBitmap, dimension, dimension);
             RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
             roundDrawable.setCircular(true);
             beerPicIv.setImageDrawable(roundDrawable);

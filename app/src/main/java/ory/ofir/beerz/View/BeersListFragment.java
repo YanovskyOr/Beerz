@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -146,6 +147,8 @@ public class BeersListFragment extends Fragment {
                     @Override
                     public void onDone(Bitmap imageBitmap) {
                         if (br.id.equals(avatarView.getTag()) && imageBitmap != null) {
+                            int dimension = Math.min(imageBitmap.getWidth(), imageBitmap.getHeight());
+                            imageBitmap = ThumbnailUtils.extractThumbnail(imageBitmap, dimension, dimension);
                             RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
                             roundDrawable.setCircular(true);
                             avatarView.setImageDrawable(roundDrawable);
