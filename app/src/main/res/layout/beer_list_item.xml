@@ -56,8 +56,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textSize="16sp"
-        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,38 +65,41 @@
         android:id="@+id/br_desc_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:minHeight="100dp"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis velit laoreet, lobortis ipsum et, convallis risus.Suspendisse ac vulputate felis, ac semper lacus. Ut elit felis, vestibulum ut dolor quis, dictum sodales elit."
-        android:textSize="16sp"
         android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/br_picture_tv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/br_name_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/br_rating_rb" />
 
     <ImageView
         android:id="@+id/br_picture_tv"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="8dp"
         android:contentDescription="pic"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/circle_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/br_name_tv" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/br_rating_tv"
-        android:layout_width="0dp"
+    <RatingBar
+        android:id="@+id/br_rating_rb"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Rating"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:isIndicator="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/br_desc_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/br_name_tv" />
 
 </android.support.constraint.ConstraintLayout>

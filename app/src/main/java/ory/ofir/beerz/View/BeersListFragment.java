@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -125,16 +128,17 @@ public class BeersListFragment extends Fragment {
             final Beer br = dataModel.getData().getValue().get(i);
 
             TextView nameTv = view.findViewById(R.id.br_name_tv);
-            TextView ratingTv = view.findViewById(R.id.br_rating_tv);
             final ImageView avatarView = view.findViewById(R.id.br_picture_tv);
             TextView descTv = view.findViewById(R.id.br_desc_tv);
+            RatingBar ratingRb = view.findViewById(R.id.br_rating_rb);
 
             nameTv.setText(br.name);
             descTv.setText(br.description);
-            ratingTv.setText(Float.toString(br.rating));
+            ratingRb.setRating(br.rating);
+
             // check following line
             //avatarView.setImageResource(R.drawable.avatar;
-            avatarView.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
+            //avatarView.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
 
             avatarView.setTag(br.id);
             if (br.picture != null){
@@ -142,7 +146,10 @@ public class BeersListFragment extends Fragment {
                     @Override
                     public void onDone(Bitmap imageBitmap) {
                         if (br.id.equals(avatarView.getTag()) && imageBitmap != null) {
-                            avatarView.setImageBitmap(imageBitmap);
+                            RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+                            roundDrawable.setCircular(true);
+                            avatarView.setImageDrawable(roundDrawable);
+                            //avatarView.setImageBitmap(imageBitmap);
                         }
                     }
                 });

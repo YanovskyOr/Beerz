@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -142,7 +144,10 @@ public class AddBeerFragment extends Fragment {
                 resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
-            beerPicIv.setImageBitmap(imageBitmap);
+            RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+            roundDrawable.setCircular(true);
+            beerPicIv.setImageDrawable(roundDrawable);
+            //beerPicIv.setImageBitmap(imageBitmap);
         }
     }
 
