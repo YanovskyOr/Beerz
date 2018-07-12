@@ -10,11 +10,11 @@ public class BeerAsyncDao {
         void onComplete(T data);
     }
     static public void getAll(final BeerAsyncDaoListener<List<Beer>> listener) {
-        class MyAsyncTask extends AsyncTask<String,String,List<Beer>>{
+
+        class MyAsyncTask extends AsyncTask<String,String,List<Beer>> {
             @Override
             protected List<Beer> doInBackground(String... strings) {
-                List<Beer> brList = AppLocalDb.db.beerDao().getAll();
-                return brList;
+                return AppLocalDb.db.beerDao().getAll();
             }
 
             @Override

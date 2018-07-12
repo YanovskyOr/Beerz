@@ -1,16 +1,17 @@
 package ory.ofir.beerz;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -30,10 +31,12 @@ import ory.ofir.beerz.View.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_WRITE_STORAGE = 112;
+
     private TextView mTextMessage;
-    final int REQUEST_WRITE_STORAGE = 1;
+    //final int REQUEST_WRITE_STORAGE = 1;
     private FirebaseAuth mAuth;
-    Context contextCompat;
+    public static Context contextCompat;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -118,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
             tran.commit();
         }/*
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                requestPermissions(new String[]{
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_STORAGE);
-            }
-        }
+
         */
+
+        String[] permissions = { android.Manifest.permission.WRITE_EXTERNAL_STORAGE };
+        int check = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (check != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(this,permissions,REQUEST_WRITE_STORAGE);
     }
 
 
