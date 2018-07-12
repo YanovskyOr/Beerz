@@ -127,8 +127,10 @@ public class BeersListFragment extends Fragment {
             TextView nameTv = view.findViewById(R.id.br_name_tv);
             TextView ratingTv = view.findViewById(R.id.br_rating_tv);
             final ImageView avatarView = view.findViewById(R.id.br_picture_tv);
+            TextView descTv = view.findViewById(R.id.br_desc_tv);
 
             nameTv.setText(br.name);
+            descTv.setText(br.description);
             ratingTv.setText(Float.toString(br.rating));
             // check following line
             //avatarView.setImageResource(R.drawable.avatar;
