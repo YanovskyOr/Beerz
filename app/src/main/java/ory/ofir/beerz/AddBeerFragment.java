@@ -1,7 +1,10 @@
 package ory.ofir.beerz;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
@@ -10,6 +13,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,6 +51,9 @@ public class AddBeerFragment extends Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ProgressBar progress;
     RatingBar ratingBar;
+    protected static final int CAMERA_REQUEST = 0;
+    protected static final int GALLERY_PICTURE = 2;
+    private Intent pictureActionIntent = null;
 
 
     @Override
@@ -124,12 +131,39 @@ public class AddBeerFragment extends Fragment {
         beerPicIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //open camera
-                Intent takePictureIntent = new Intent(
-                        MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                }
+                AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(
+                        getActivity());
+                myAlertDialog.setTitle("Upload Pictures Option");
+                myAlertDialog.setMessage("How do you want to set your picture?");
+
+                myAlertDialog.setPositiveButton("Gallery",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent pictureActionIntent = null;
+
+                                pictureActionIntent = new Intent(
+                                        Intent.ACTION_PICK,
+                                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(
+                                        pictureActionIntent,
+                                        GALLERY_PICTURE);
+
+                            }
+                        });
+
+                myAlertDialog.setNegativeButton("Camera",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                //open camera
+                                Intent takePictureIntent = new Intent(
+                                        MediaStore.ACTION_IMAGE_CAPTURE);
+                                if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                                }
+                            }
+                        });
+
+                myAlertDialog.show();
             }
         });
         beerPicIv = view.findViewById(R.id.add_beer_pic_iv);
@@ -152,6 +186,29 @@ public class AddBeerFragment extends Fragment {
             beerPicIv.setImageDrawable(roundDrawable);
             //beerPicIv.setImageBitmap(imageBitmap);
         }
+        else if (requestCode == GALLERY_PICTURE &&
+                resultCode == RESULT_OK) {
+            Uri pickedImage = data.getData();
+            // Let's read picked image path using content resolver
+            String[] filePath = { MediaStore.Images.Media.DATA };
+            Cursor cursor = getActivity().getContentResolver().query(pickedImage, filePath, null, null, null);
+            cursor.moveToFirst();
+            String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            imageBitmap = BitmapFactory.decodeFile(imagePath, options);
+
+            // Do something with the bitmap
+            int dimension = Math.min(imageBitmap.getWidth(), imageBitmap.getHeight());
+            imageBitmap = ThumbnailUtils.extractThumbnail(imageBitmap, dimension, dimension);
+            RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+            roundDrawable.setCircular(true);
+            beerPicIv.setImageDrawable(roundDrawable);
+
+            // At the end remember to close the cursor or you will end with the RuntimeException!
+            cursor.close();
+            }
     }
 
 
@@ -165,4 +222,8 @@ public class AddBeerFragment extends Fragment {
             bundle.putString(ARG_NAME, beerNameTe.getText().toString());
 //            bundle.putString(ARG_ID, idEt.getText().toString());
         }
+
+
+    private void startDialog() {
+    }
 }
