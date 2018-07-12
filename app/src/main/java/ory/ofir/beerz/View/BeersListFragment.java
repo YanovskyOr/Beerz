@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -28,6 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ory.ofir.beerz.BeersListViewModel;
+import ory.ofir.beerz.MainActivity;
 import ory.ofir.beerz.Model.Beer;
 import ory.ofir.beerz.Model.Model;
 import ory.ofir.beerz.R;
@@ -70,10 +73,12 @@ public class BeersListFragment extends Fragment {
                 fragment.desc = br.description;
                 fragment.rating = br.rating;
                 fragment.image = br.picture;
-                FragmentTransaction tran = getFragmentManager().beginTransaction();
-                tran.replace(R.id.main_container, fragment);
-                tran.addToBackStack("");
-                tran.commit();
+                fragment.show(getActivity().getSupportFragmentManager(),"Dialog");
+
+//                FragmentTransaction tran = getFragmentManager().beginTransaction();
+//                tran.replace(R.id.main_container, fragment);
+//                tran.addToBackStack("");
+//                tran.commit();
             }
         });
         return view;

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -17,7 +18,7 @@ import android.widget.TextView;
 import ory.ofir.beerz.Model.Model;
 import ory.ofir.beerz.R;
 
-public class BeerDetailsFragment extends Fragment {
+public class BeerDetailsFragment extends BottomSheetDialogFragment {
 
     public String id;
     public String name;
