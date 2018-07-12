@@ -11,12 +11,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,16 +47,21 @@ public class ModelFirebase {
 
     public void getAllBeers(final GetAllBeersListener listener) {
         DatabaseReference brRef = FirebaseDatabase.getInstance().getReference().child("beers");
+        // brRefDesc = brRef.orderByChild("id");
 
         eventListener = brRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Beer> brList = new LinkedList<>();
 
+
+
                 for (DataSnapshot brSnapshot: dataSnapshot.getChildren()) {
                     Beer br = brSnapshot.getValue(Beer.class);
                     brList.add(br);
                 }
+
+                Collections.reverse(brList);
                 listener.onSuccess(brList);
             }
 

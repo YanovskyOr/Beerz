@@ -116,7 +116,6 @@ public class BeersListFragment extends Fragment {
 
     class MyAdapter extends BaseAdapter {
         public MyAdapter(){
-
         }
 
         @Override

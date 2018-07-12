@@ -200,8 +200,8 @@ public class AddBeerFragment extends Fragment {
             imageBitmap = BitmapFactory.decodeFile(imagePath, options);
 
             // Do something with the bitmap
-            int dimension = Math.min(imageBitmap.getWidth(), imageBitmap.getHeight());
-            imageBitmap = ThumbnailUtils.extractThumbnail(imageBitmap, dimension, dimension);
+            //int dimension = Math.min(imageBitmap.getWidth(), imageBitmap.getHeight());
+            imageBitmap = ThumbnailUtils.extractThumbnail(imageBitmap, 500, 500);
             RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
             roundDrawable.setCircular(true);
             beerPicIv.setImageDrawable(roundDrawable);

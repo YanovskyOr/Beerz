@@ -82,12 +82,10 @@
         android:id="@+id/br_picture_tv"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="pic"
         android:src="@drawable/circle_shape"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

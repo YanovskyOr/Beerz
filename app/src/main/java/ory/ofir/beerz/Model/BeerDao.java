@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface BeerDao {
-    @Query("select * from Beer")
+    @Query("select * from Beer ORDER BY id DESC")
     List<Beer> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
