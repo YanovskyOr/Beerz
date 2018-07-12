@@ -1,6 +1,11 @@
 package ory.ofir.beerz.View;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +24,7 @@ import java.util.List;
 
 import ory.ofir.beerz.BeersListViewModel;
 import ory.ofir.beerz.Model.Beer;
+import ory.ofir.beerz.Model.Model;
 import ory.ofir.beerz.R;
 
 public class BeersListFragment extends Fragment {
@@ -34,7 +40,6 @@ public class BeersListFragment extends Fragment {
         return fragment;
     }
 
-    //BEGIN TEST
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +61,9 @@ public class BeersListFragment extends Fragment {
         });
         return view;
     }
-    //END TEST
 
 
-    /*@Override
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         dataModel = ViewModelProviders.of(this).get(BeersListViewModel.class);
@@ -78,22 +82,6 @@ public class BeersListFragment extends Fragment {
         Model.instance.cancelGetAllBeers();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_beers_list, container, false);
-
-        list = view.findViewById(R.id.beerslist_list);
-        list.setAdapter(myAdapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("TAG","item selected:" + i);
-            }
-        });
-        return view;
-    }*/
-
 
 
     @Override
@@ -103,7 +91,7 @@ public class BeersListFragment extends Fragment {
     }
 
 
-    /*
+
     class MyAdapter extends BaseAdapter {
         public MyAdapter(){
 
@@ -159,7 +147,8 @@ public class BeersListFragment extends Fragment {
             }
             return view;
         }
-    }*/
+    }
+    /*
     class MyAdapter extends BaseAdapter {
         List<Beer> data = new LinkedList<Beer>();
 
@@ -209,5 +198,5 @@ public class BeersListFragment extends Fragment {
             ratingTv.setText(Float.toString(br.rating));
             return view;
         }
-    }
+    }*/
 }
