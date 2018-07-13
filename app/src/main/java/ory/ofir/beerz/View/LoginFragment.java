@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,8 @@ public class LoginFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private ProgressBar progressBar;
 
 
     @Override
@@ -55,6 +58,8 @@ public class LoginFragment extends Fragment {
         mPasswowrdField= view.findViewById(R.id.passwordField);
         mLoginBtn = view.findViewById(R.id.loginButton);
         mRegisterBrn = view.findViewById(R.id.registerButton);
+        progressBar = view.findViewById(R.id.login_progressbar);
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -85,10 +90,13 @@ public class LoginFragment extends Fragment {
 
 
     private void startSignIn() {
+        progressBar.setVisibility(View.VISIBLE);
         String email = mEmailField.getText().toString();
         String password = mPasswowrdField.getText().toString();
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            Toast.makeText(getActivity(),"Fields are empty",Toast.LENGTH_LONG).show();
             Log.d("tag", "fields are empty");
+            progressBar.setVisibility(View.GONE);
         }
         else
         {
@@ -96,28 +104,27 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-                        //Toast.makeText(MyApplication.this,"Sign in failed",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"Sign in failed",Toast.LENGTH_LONG).show();
                         Log.d("tag", "login failed");
                     }
                     else {
                         Log.d("tag", "login success");
                         startActivity(new Intent(getActivity(),MainActivity.class));
-
-                        /*BeersListFragment fragment = new BeersListFragment();
-                        FragmentTransaction tran = getActivity().getSupportFragmentManager().beginTransaction();
-                        tran.replace(R.id.main_container, fragment);
-                        tran.commit();*/
                     }
+                    progressBar.setVisibility(View.GONE);
                 }
             });
         }
+
     }
 
     private void startRegister() {
+        progressBar.setVisibility(View.VISIBLE);
         String email = mEmailField.getText().toString();
         String password = mPasswowrdField.getText().toString();
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Log.d("tag", "fields are empty");
+            Toast.makeText(getActivity(),"Fields are empty",Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
         }
         else
         {
@@ -125,7 +132,7 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-//                        Toast.makeText(MainActivity.this,"Sign in failed",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"Registration in failed",Toast.LENGTH_LONG).show();
                         Log.d("tag", "register failed");
                     }
                     else {
@@ -137,6 +144,7 @@ public class LoginFragment extends Fragment {
                         tran.replace(R.id.main_container, fragment);
                         tran.commit();
                     }
+                    progressBar.setVisibility(View.GONE);
                 }
             });
         }
