@@ -65,7 +65,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null) {
-                    getActivity().getFragmentManager().popBackStackImmediate();
+                    //getActivity().getFragmentManager().popBackStackImmediate();
+                    Log.d("TAG","Auth Changed.");
                 }
             }
         };
@@ -109,7 +110,9 @@ public class LoginFragment extends Fragment {
                     }
                     else {
                         Log.d("tag", "login success");
-                        startActivity(new Intent(getActivity(),MainActivity.class));
+                        Intent intent = new Intent(getActivity(),MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
                     progressBar.setVisibility(View.GONE);
                 }

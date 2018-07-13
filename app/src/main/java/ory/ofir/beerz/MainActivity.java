@@ -72,6 +72,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String[] permissions = { android.Manifest.permission.WRITE_EXTERNAL_STORAGE };
+        int check = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (check != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(this,permissions,REQUEST_WRITE_STORAGE);
+
+        //BEGIN LOGIN/REGISTER TESTING
+        //FirebaseAuth.getInstance().signOut();
+        //END TESTING
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        Log.d("tag", "currentUser is :" +currentUser);
+        if(currentUser == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+
+
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -88,36 +108,13 @@ public class MainActivity extends AppCompatActivity {
 
         contextCompat = getBaseContext();
 
-        //BEGIN LOGIN/REGISTER TESTING
-        //FirebaseAuth.getInstance().signOut();
-        //END TESTING
-
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        Log.d("tag", "currentUser is :" +currentUser);
-        if(currentUser == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-            startActivity(intent);
-//            this.finish();
-        }
-
         if (savedInstanceState == null) {
             BeersListFragment fragment = new BeersListFragment();
             FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
             tran.replace(R.id.main_container, fragment);
             tran.addToBackStack("");
             tran.commit();
-        }/*
-
-
-        */
-
-        String[] permissions = { android.Manifest.permission.WRITE_EXTERNAL_STORAGE };
-        int check = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (check != PackageManager.PERMISSION_GRANTED)
-            ActivityCompat.requestPermissions(this,permissions,REQUEST_WRITE_STORAGE);
+        }
     }
 
 

@@ -12,9 +12,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        LoginFragment fragment = new LoginFragment();
-        FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
-        tran.replace(R.id.loginContainer, fragment);
-        tran.commit();
+        if (savedInstanceState == null) {
+            LoginFragment fragment = new LoginFragment();
+            FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
+            tran.replace(R.id.loginContainer, fragment);
+            tran.commit();
+       }
     }
 }
