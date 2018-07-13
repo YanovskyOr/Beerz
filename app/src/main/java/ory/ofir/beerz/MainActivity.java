@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         contextCompat = getBaseContext();
 
         //BEGIN LOGIN/REGISTER TESTING
-        //FirebaseAuth.getInstance().signOut();
+        FirebaseAuth.getInstance().signOut();
         //END TESTING
 
         mAuth = FirebaseAuth.getInstance();
@@ -103,16 +103,6 @@ public class MainActivity extends AppCompatActivity {
 //            this.finish();
         }
 
-/*        Beer br = new Beer();
-        br.name="bla";
-        br.picture="";
-        br.id="2";
-        br.description="very nice";
-        br.rating=4;
-
-        Model.instance.addBeer(br);/*
-
-/*
         if (savedInstanceState == null) {
             BeersListFragment fragment = new BeersListFragment();
             FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
