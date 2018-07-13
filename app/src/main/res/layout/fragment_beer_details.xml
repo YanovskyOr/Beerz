@@ -46,12 +46,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:fillViewport="true"
             app:layout_constraintTop_toBottomOf="@+id/beer_name_tv">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+
                 android:background="@color/colorBgDark">
 
                 <ImageView
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/round_corners_ractangle_shape_altr"
                     android:minHeight="48dp"
                     android:padding="8dp"
@@ -96,16 +96,38 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/beer_rating_rb" />
 
+
+                <EditText
+                    android:id="@+id/beer_details_add_comment_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/round_corners_rectangle_shape"
+                    android:hint="Comment"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/colorBgDark"
+                    android:textCursorDrawable="@color/colorAccent"
+                    app:layout_constraintBottom_toTopOf="@+id/comments_list"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/beer_desc_tv" />
+
                 <ListView
                     android:id="@+id/comments_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
                     android:padding="8dp"
                     android:scrollbars="none"
-
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/beer_desc_tv" />
+                    app:layout_constraintTop_toBottomOf="@+id/beer_details_add_comment_et" />
 
                 <!--<TextView-->
                 <!--android:layout_width="match_parent"-->
