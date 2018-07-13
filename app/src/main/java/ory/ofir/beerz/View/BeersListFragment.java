@@ -73,6 +73,7 @@ public class BeersListFragment extends Fragment {
                 fragment.desc = br.description;
                 fragment.rating = br.rating;
                 fragment.image = br.picture;
+                fragment.comments = br.comments;
                 fragment.show(getActivity().getSupportFragmentManager(),"Dialog");
 
 

@@ -11,9 +11,13 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import ory.ofir.beerz.Model.Model;
 import ory.ofir.beerz.R;
@@ -25,11 +29,13 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
     public String image;
     public String desc;
     public float rating;
+    public ArrayList<String> comments;
 
     private TextView mBeerName;
     private ImageView mBeerImage;
     private TextView mBeerDesc;
     private RatingBar mRatingBar;
+    private ListView mCommentsList;
 
     public static BeerDetailsFragment newInstance() {
         BeerDetailsFragment fragment = new BeerDetailsFragment();
@@ -43,12 +49,18 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
 
         mBeerName = view.findViewById(R.id.beer_name_tv);
         final ImageView mBeerImage = view.findViewById(R.id.beer_picture_tv);
-        TextView mBeerDesc = view.findViewById(R.id.beerr_desc_tv);
+        TextView mBeerDesc = view.findViewById(R.id.beer_desc_tv);
         RatingBar mRatingBar = view.findViewById(R.id.beer_rating_rb);
+        mCommentsList = view.findViewById(R.id.comments_list);
 
         mBeerName.setText(name);
         mBeerDesc.setText(desc);
         mRatingBar.setRating(rating);
+
+        if(comments != null) {
+            ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.comment_list_item,R.id.comment_tv, comments);
+            mCommentsList.setAdapter(arrayAdapter);
+        }
 
         mBeerImage.setTag(id);
         if (image != null) {
@@ -69,4 +81,5 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
 
         return view;
     }
+
 }
