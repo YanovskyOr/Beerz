@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         contextCompat = getBaseContext();
 
         //BEGIN LOGIN/REGISTER TESTING
-        FirebaseAuth.getInstance().signOut();
+        //FirebaseAuth.getInstance().signOut();
         //END TESTING
 
         mAuth = FirebaseAuth.getInstance();
