@@ -75,6 +75,7 @@ public class BeersListFragment extends Fragment {
                 fragment.image = br.picture;
                 fragment.show(getActivity().getSupportFragmentManager(),"Dialog");
 
+
 //                FragmentTransaction tran = getFragmentManager().beginTransaction();
 //                tran.replace(R.id.main_container, fragment);
 //                tran.addToBackStack("");

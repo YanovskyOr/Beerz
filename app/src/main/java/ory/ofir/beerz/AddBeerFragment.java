@@ -30,6 +30,8 @@ import android.graphics.Bitmap;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import ory.ofir.beerz.Model.Beer;
 import ory.ofir.beerz.Model.Model;
 
@@ -100,6 +102,9 @@ public class AddBeerFragment extends Fragment {
                         public void onDone(String url) {
                             //save beer object
                             beer.picture = url;
+                            beer.comments = new ArrayList<String>();
+                            beer.comments.add("comment1");
+                            beer.comments.add("comment2");
                             Model.instance.addBeer(beer);
                             getActivity().finish();
                         }

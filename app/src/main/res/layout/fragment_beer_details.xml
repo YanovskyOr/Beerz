@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     app:behavior_hideable="true"
     app:behavior_peekHeight="80dp"
+    android:background="@color/colorBgDark"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +17,7 @@
         android:id="@+id/details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBgDark">
+        >
 
 
         <TextView
@@ -82,8 +83,10 @@
                 <TextView
                     android:id="@+id/beerr_desc_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/round_corners_ractangle_shape_altr"
                     android:minHeight="48dp"
@@ -91,7 +94,11 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/beer_rating_rb" />
+
+
 
                 <!--<TextView-->
                 <!--android:layout_width="match_parent"-->
