@@ -11,6 +11,10 @@
     app:behavior_peekHeight="80dp"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -143,5 +147,5 @@
         </android.support.v4.widget.NestedScrollView>
 
     </android.support.constraint.ConstraintLayout>
-
+    </ScrollView>
 </RelativeLayout>

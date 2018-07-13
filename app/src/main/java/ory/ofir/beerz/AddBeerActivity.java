@@ -17,21 +17,23 @@ public class AddBeerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beer);
+        if (savedInstanceState == null) {
 
-        AddBeerFragment fragment = new AddBeerFragment();
-        FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
-        tran.replace(R.id.addBeerContainer, fragment);
-        tran.commit();
+            AddBeerFragment fragment = new AddBeerFragment();
+            FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
+            tran.replace(R.id.addBeerContainer, fragment);
+            tran.commit();
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+            mAuth = FirebaseAuth.getInstance();
+            FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        Log.d("tag", "currentUser is :" +currentUser);
-        if(currentUser == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-            startActivity(intent);
-            this.finish();
+            Log.d("tag", "currentUser is :" + currentUser);
+            if (currentUser == null) {
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                startActivity(intent);
+                this.finish();
+            }
         }
     }
 }
