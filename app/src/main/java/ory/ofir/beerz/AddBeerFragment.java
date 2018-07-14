@@ -102,14 +102,13 @@ public class AddBeerFragment extends Fragment {
                         public void onDone(String url) {
                             //save beer object
                             beer.picture = url;
-                            beer.comments = new ArrayList<String>();
-                            beer.comments.add("comment1");
-                            beer.comments.add("comment2");
-                            Model.instance.addBeer(beer);
-                            getActivity().finish();
                         }
                     });
                 }
+                beer.comments = new ArrayList<String>();
+                beer.comments.add("comment1");
+                Model.instance.addBeer(beer);
+                getActivity().finish();
             }
         });
 
