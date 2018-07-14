@@ -33,6 +33,10 @@ public class ModelFirebase {
         mDatabase.child("beers").child(beer.id).setValue(beer);
     }
 
+    /*public void addComment(String id, String comment) {
+
+    }*/
+
     public void cancelGetAllBeers() {
         DatabaseReference stRef = FirebaseDatabase.getInstance().getReference().child("beers");
         stRef.removeEventListener(eventListener);

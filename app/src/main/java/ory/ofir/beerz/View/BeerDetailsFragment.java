@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -56,6 +57,8 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
         TextView mBeerDesc = view.findViewById(R.id.beer_desc_tv);
         RatingBar mRatingBar = view.findViewById(R.id.beer_rating_rb);
         mCommentsList = view.findViewById(R.id.comments_list);
+        final TextView mNewComment = view.findViewById(R.id.beer_details_add_comment_et);
+        Button mSendComment = view.findViewById(R.id.send_comment_btn);
 
         mBeerName.setText(name);
         mBeerDesc.setText(desc);
@@ -64,8 +67,6 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
         if(comments != null) {
             arrayAdapter = new ArrayAdapter(getActivity(), R.layout.comment_list_item,R.id.comment_tv, comments);
             mCommentsList.setAdapter(arrayAdapter);
-
-
         }
 
         mBeerImage.setTag(id);
@@ -85,6 +86,17 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
             });
         }
         getListItemsHeight();
+
+        mSendComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("TAG",mNewComment.getText().toString());
+                comments.add(mNewComment.getText().toString());
+                mCommentsList.getAdapter().notify();
+
+            }
+        });
+
         return view;
     }
 

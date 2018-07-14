@@ -98,8 +98,16 @@
                 android:padding="8dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorBgDark"
-                android:textCursorDrawable="@color/colorAccent"
-                />
+                android:textCursorDrawable="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/send_comment_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:text="Send"
+                android:textColor="@color/colorBgDark"
+                android:textSize="18sp" />
 
             <ListView
                 android:id="@+id/comments_list"

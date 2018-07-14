@@ -31,8 +31,6 @@ public class Model {
 
     class BeerListData extends  MutableLiveData<List<Beer>>{
 
-
-
         @Override
         protected void onActive() {
             super.onActive();
