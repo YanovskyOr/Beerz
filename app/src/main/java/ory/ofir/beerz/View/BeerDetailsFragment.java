@@ -100,9 +100,10 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 Log.d("TAG",mNewComment.getText().toString());
-                comments.add(mNewComment.getText().toString());
+                Model.instance.addComment(id,mNewComment.getText().toString());
+                //comments.add(mNewComment.getText().toString());
                 arrayAdapter.notifyDataSetChanged();
-//                Model.instance.addComment(mNewComment);
+
             }
         });
 

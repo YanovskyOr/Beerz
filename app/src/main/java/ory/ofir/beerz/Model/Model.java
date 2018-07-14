@@ -84,6 +84,11 @@ public class Model {
         return beerListData;
     }
 
+
+    public void addComment(String id, String comment) {
+        modelFirebase.addComment(id,comment);
+    }
+
     public void addBeer(Beer br){
         modelFirebase.addBeer(br);
     }

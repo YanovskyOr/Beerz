@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -18,6 +19,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
@@ -33,9 +36,26 @@ public class ModelFirebase {
         mDatabase.child("beers").child(beer.id).setValue(beer);
     }
 
-    /*public void addComment(String id, String comment) {
+    public void addComment(String id, final String comment) {
+        DatabaseReference brRef = FirebaseDatabase.getInstance().getReference().child("beers");
+        Query query = brRef.orderByChild("id").equalTo(id);
 
-    }*/
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    GenericTypeIndicator<ArrayList<String>> genericTypeIndicator = new GenericTypeIndicator<ArrayList<String>>() {};
+                    ArrayList<String> comments = child.child("comments").getValue(genericTypeIndicator);
+                    comments.add(comment);
+                    child.getRef().child("comments").setValue(comments);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     public void cancelGetAllBeers() {
         DatabaseReference stRef = FirebaseDatabase.getInstance().getReference().child("beers");
