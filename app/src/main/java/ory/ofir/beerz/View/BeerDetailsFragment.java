@@ -1,5 +1,9 @@
 package ory.ofir.beerz.View;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
@@ -20,11 +24,16 @@ import android.widget.TextView;
 import android.view.View.MeasureSpec;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import ory.ofir.beerz.BeersListViewModel;
+import ory.ofir.beerz.Model.Beer;
 import ory.ofir.beerz.Model.Model;
 import ory.ofir.beerz.R;
 
 public class BeerDetailsFragment extends BottomSheetDialogFragment {
+
+    ViewModel beerDetailsViewModel;
 
     public String id;
     public String name;
@@ -103,4 +112,16 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
         mCommentsList.setLayoutParams(params);
         mCommentsList.requestLayout();
     }
+
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        beerDetailsViewModel = ViewModelProviders.of(this).get(BeersListViewModel.class);
+//        beerDetailsViewModel.Model.instance.getAllBeers();().observe(this, new Observer<ArrayList<String>>() {
+//            @Override
+//            public void onChanged(@Nullable ArrayList<String> comments) {
+//            arrayAdapter.notifyDataSetChanged();
+//            }
+//        });
+//    }
 }
