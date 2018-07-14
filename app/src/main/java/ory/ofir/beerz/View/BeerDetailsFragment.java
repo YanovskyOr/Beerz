@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.view.View.MeasureSpec;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,9 +102,10 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 Log.d("TAG",mNewComment.getText().toString());
                 Model.instance.addComment(id,mNewComment.getText().toString());
-                //comments.add(mNewComment.getText().toString());
+                comments.add(mNewComment.getText().toString());
                 arrayAdapter.notifyDataSetChanged();
-
+                mNewComment.setText("");
+                Toast.makeText(getContext(), "Comment posted!", Toast.LENGTH_LONG).show();
             }
         });
 

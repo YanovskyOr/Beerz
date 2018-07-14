@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.graphics.Bitmap;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -87,28 +88,50 @@ public class AddBeerFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progress.setVisibility(View.VISIBLE);
+
 
                 final Beer beer = new Beer();
                 beer.name = beerNameTe.getText().toString();
                 beer.id = "2";
                 beer.description = beerReviewTe.getText().toString();
                 beer.rating = ratingBar.getRating();
+                beer.comments = new ArrayList<String>();
+                beer.comments.add("Comments:");
+                progress.setVisibility(View.VISIBLE);
+
+                if(beerNameTe.getText().toString().isEmpty()){
+                    progress.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Please add a beer name!", Toast.LENGTH_LONG).show();
+                }
+
+
+                else if(beerReviewTe.getText().toString().isEmpty()){
+                    progress.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Please write something about the beer!", Toast.LENGTH_LONG).show();
+                }
 
                 //save image
-                if (imageBitmap != null) {
+                else if (imageBitmap != null) {
                     Model.instance.saveImage(imageBitmap, new Model.SaveImageListener() {
                         @Override
                         public void onDone(String url) {
                             //save beer object
                             beer.picture = url;
+
+                            Model.instance.addBeer(beer);
+                            getActivity().finish();
                         }
                     });
+
                 }
-                beer.comments = new ArrayList<String>();
-                beer.comments.add("comment1");
-                Model.instance.addBeer(beer);
-                getActivity().finish();
+
+                else{
+                    progress.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Please add a picture!", Toast.LENGTH_LONG).show();
+                }
+
+
+
             }
         });
 
