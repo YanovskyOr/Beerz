@@ -8,6 +8,7 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.view.View.MeasureSpec;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,8 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
     private TextView mBeerDesc;
     private RatingBar mRatingBar;
     private ListView mCommentsList;
+
+    ArrayAdapter arrayAdapter;
 
     public static BeerDetailsFragment newInstance() {
         BeerDetailsFragment fragment = new BeerDetailsFragment();
@@ -58,8 +62,10 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
         mRatingBar.setRating(rating);
 
         if(comments != null) {
-            ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), R.layout.comment_list_item,R.id.comment_tv, comments);
+            arrayAdapter = new ArrayAdapter(getActivity(), R.layout.comment_list_item,R.id.comment_tv, comments);
             mCommentsList.setAdapter(arrayAdapter);
+
+
         }
 
         mBeerImage.setTag(id);
@@ -78,8 +84,23 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
                 }
             });
         }
-
+        getListItemsHeight();
         return view;
     }
 
+    public void getListItemsHeight(){
+        int totalHeight = 0;
+        for (int i = 0; i < mCommentsList.getCount(); i++) {
+            View item = arrayAdapter.getView(i, null, mCommentsList);
+            item.measure(MeasureSpec.makeMeasureSpec(mCommentsList.getWidth(), MeasureSpec.AT_MOST),0);
+            totalHeight += item.getMeasuredHeight();
+            Log.d("TAG","item height:" + item.getMeasuredHeight());
+        }
+
+        Log.d("TAG","total height:" + totalHeight);
+        ViewGroup.LayoutParams params = mCommentsList.getLayoutParams();
+        params.height = totalHeight + (mCommentsList.getDividerHeight() * (mCommentsList.getCount() - 1));
+        mCommentsList.setLayoutParams(params);
+        mCommentsList.requestLayout();
+    }
 }

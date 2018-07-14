@@ -5,147 +5,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheetLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorBgDark"
     app:behavior_hideable="true"
     app:behavior_peekHeight="80dp"
+    android:fillViewport="true"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:fillViewport="true">
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/details_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/beer_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/beer_name_tv">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <android.support.constraint.ConstraintLayout
+
+
+            <TextView
+                android:id="@+id/beer_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/beer_picture_tv"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="pic"
+                android:src="@drawable/circle_shape"
+                />
+
+            <RatingBar
+                android:id="@+id/beer_rating_rb"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:isIndicator="true"
+                android:progressTint="@color/colorAccent"
+                />
+
+
+            <TextView
+                android:id="@+id/beer_desc_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:background="@color/colorBgDark">
-
-                <ImageView
-                    android:id="@+id/beer_picture_tv"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="pic"
-                    android:src="@drawable/circle_shape"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <RatingBar
-                    android:id="@+id/beer_rating_rb"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:isIndicator="true"
-                    android:progressTint="@color/colorAccent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/beer_picture_tv" />
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/round_corners_ractangle_shape_altr"
+                android:minHeight="48dp"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                />
 
 
-                <TextView
-                    android:id="@+id/beer_desc_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/round_corners_ractangle_shape_altr"
-                    android:minHeight="48dp"
-                    android:padding="8dp"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/beer_rating_rb" />
+            <EditText
+                android:id="@+id/beer_details_add_comment_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/round_corners_rectangle_shape"
+                android:hint="Comment"
+                android:minHeight="48dp"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorBgDark"
+                android:textCursorDrawable="@color/colorAccent"
+                />
 
+            <ListView
+                android:id="@+id/comments_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:scrollbars="none" />
 
-                <EditText
-                    android:id="@+id/beer_details_add_comment_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/round_corners_rectangle_shape"
-                    android:hint="Comment"
-                    android:minHeight="48dp"
-                    android:padding="8dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/colorBgDark"
-                    android:textCursorDrawable="@color/colorAccent"
-                    app:layout_constraintBottom_toTopOf="@+id/comments_list"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/beer_desc_tv" />
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:minHeight="100dp"-->
+            <!--android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus, justo vel tristique porta, velit neque pharetra arcu, non pellentesque sem sem sed ligula. Ut quis ornare ante. Donec congue lectus a imperdiet hendrerit. Donec vestibulum magna vitae sodales fermentum. Donec placerat turpis ut tellus tincidunt, vitae iaculis lectus luctus. Nunc risus nibh, pulvinar eget maximus nec, dictum eget nisl. Sed id consequat nisi. Cras eget mauris ultrices, ornare nunc sed, convallis velit. Nullam tristique pharetra nisl, vel lacinia justo.  Nunc vel urna non velit lacinia suscipit non sed nibh. Maecenas accumsan nisi a odio faucibus, eu interdum justo viverra. Aenean aliquet, nisi at pharetra finibus, ante tortor porttitor ipsum, quis fringilla enim turpis ut turpis. Integer cursus ornare dictum. Etiam non mi ac ipsum auctor vestibulum ut accumsan nibh. Vivamus dictum viverra mattis. Sed porta, felis vitae vulputate ullamcorper, arcu nisi ultricies turpis, id dapibus nisi elit ac lorem. Aenean at nulla turpis. Pellentesque eu eros non augue cursus molestie. Nunc pharetra nisl ante, et suscipit sapien dapibus non. Donec porta fermentum lectus non maximus. Vestibulum accumsan erat at volutpat luctus."-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="16sp"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/beerr_desc_tv" />-->
 
-                <ListView
-                    android:id="@+id/comments_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-                    android:padding="8dp"
-                    android:scrollbars="none"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/beer_details_add_comment_et" />
-
-                <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginTop="16dp"-->
-                <!--android:minHeight="100dp"-->
-                <!--android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus, justo vel tristique porta, velit neque pharetra arcu, non pellentesque sem sem sed ligula. Ut quis ornare ante. Donec congue lectus a imperdiet hendrerit. Donec vestibulum magna vitae sodales fermentum. Donec placerat turpis ut tellus tincidunt, vitae iaculis lectus luctus. Nunc risus nibh, pulvinar eget maximus nec, dictum eget nisl. Sed id consequat nisi. Cras eget mauris ultrices, ornare nunc sed, convallis velit. Nullam tristique pharetra nisl, vel lacinia justo.  Nunc vel urna non velit lacinia suscipit non sed nibh. Maecenas accumsan nisi a odio faucibus, eu interdum justo viverra. Aenean aliquet, nisi at pharetra finibus, ante tortor porttitor ipsum, quis fringilla enim turpis ut turpis. Integer cursus ornare dictum. Etiam non mi ac ipsum auctor vestibulum ut accumsan nibh. Vivamus dictum viverra mattis. Sed porta, felis vitae vulputate ullamcorper, arcu nisi ultricies turpis, id dapibus nisi elit ac lorem. Aenean at nulla turpis. Pellentesque eu eros non augue cursus molestie. Nunc pharetra nisl ante, et suscipit sapien dapibus non. Donec porta fermentum lectus non maximus. Vestibulum accumsan erat at volutpat luctus."-->
-                <!--android:textColor="@color/white"-->
-                <!--android:textSize="16sp"-->
-                <!--app:layout_constraintTop_toBottomOf="@+id/beerr_desc_tv" />-->
-
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v4.widget.NestedScrollView>
-
-    </android.support.constraint.ConstraintLayout>
-    </ScrollView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>
