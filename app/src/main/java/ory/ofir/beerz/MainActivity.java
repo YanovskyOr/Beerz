@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText("My Beers");
+                    mTextMessage.setText("All Beers");
                     onHomeSelected();
                     return true;
-                case R.id.navigation_all_beers:
-                    mTextMessage.setText("All Beers");
-                    return true;
-                case R.id.navigation_top_beers:
-                    mTextMessage.setText("Top Beers");
-                    return true;
+//                case R.id.navigation_all_beers:
+//                    mTextMessage.setText("Your Beers");
+//                    return true;
+//                case R.id.navigation_top_beers:
+//                    mTextMessage.setText("Top Beers");
+//                    return true;
             }
             return false;
         }

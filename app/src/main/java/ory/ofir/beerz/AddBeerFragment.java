@@ -41,7 +41,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class AddBeerFragment extends Fragment {
     private static final String ARG_NAME = "ARG_NAME";
-    private static final String ARG_ID = "ARG_ID";
+//    private static final String ARG_ID = "ARG_ID";
+//    private static final String IMAGE_RESOURCE = "image-resource";
 
     public AddBeerFragment() {
 
@@ -62,6 +63,14 @@ public class AddBeerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        if(imageBitmap != null)
+//        {
+//            imageBitmap =  savedInstanceState.getParcelable(IMAGE_RESOURCE);
+//            beerPicIv.setImageBitmap(imageBitmap);
+//        }
+
+
+
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setElevation(0);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -244,9 +253,10 @@ public class AddBeerFragment extends Fragment {
             super.onDestroyView();
         }
         @Override
-        public void  onSaveInstanceState(Bundle bundle){
+            public void  onSaveInstanceState(Bundle bundle){
+//            bundle.putParcelable(IMAGE_RESOURCE, imageBitmap);
             super.onSaveInstanceState(bundle);
-            bundle.putString(ARG_NAME, beerNameTe.getText().toString());
+//            bundle.putString(ARG_NAME, beerNameTe.getText().toString());
 //            bundle.putString(ARG_ID, idEt.getText().toString());
         }
 

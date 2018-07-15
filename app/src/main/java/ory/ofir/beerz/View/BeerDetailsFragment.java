@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -56,6 +57,12 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
         BeerDetailsFragment fragment = new BeerDetailsFragment();
         return fragment;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
 
     @Nullable
     @Override
@@ -128,6 +135,10 @@ public class BeerDetailsFragment extends BottomSheetDialogFragment {
         mCommentsList.requestLayout();
     }
 
+    @Override
+    public void  onSaveInstanceState(Bundle bundle){
+        super.onSaveInstanceState(bundle);
+    }
 //    @Override
 //    public void onAttach(Context context) {
 //        super.onAttach(context);

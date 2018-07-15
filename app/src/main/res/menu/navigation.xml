@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_beer"
-        android:title="@string/title_home" />
-
-    <item
-        android:id="@+id/navigation_all_beers"
         android:icon="@drawable/ic_two_beers"
         android:title="@string/title_all_beers" />
 
-    <item
-        android:id="@+id/navigation_top_beers"
-        android:icon="@drawable/ic_top"
-        android:title="@string/title_top_beers" />
+    <!--<item-->
+        <!--android:id="@+id/navigation_all_beers"-->
+        <!--android:icon="@drawable/ic_beer"-->
+        <!--android:title="@string/title_home" />-->
+
+    <!--<item-->
+        <!--android:id="@+id/navigation_top_beers"-->
+        <!--android:icon="@drawable/ic_top"-->
+        <!--android:title="@string/title_top_beers" />-->
 
     <item
         android:title=""
